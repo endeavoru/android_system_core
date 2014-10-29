@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+#allow unused for htc log functions in logd_write.c
+KBUILD_CFLAGS := -Wno-error=unused-but-set-variable
+
 LOCAL_PATH := $(my-dir)
 include $(CLEAR_VARS)
 
