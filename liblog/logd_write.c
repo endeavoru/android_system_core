@@ -92,6 +92,31 @@ static int __write_to_log_null(log_id_t log_fd __unused, struct iovec *vec __unu
 }
 #endif
 
+
+
+
+#ifdef HTCLOG
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
+signed int __htclog_read_masks(char *buf, signed int len)
+{
+    return 0;
+}
+
+int __htclog_init_mask(const char *a1, unsigned int a2, int a3)
+{
+    return 0;
+}
+
+int __htclog_print_private(int a1, const char *a2, const char *fmt, ...)
+{
+    return __android_log_print(a1, a2, fmt);
+}
+#pragma GCC diagnostic pop
+#endif
+
+
+
 /* log_init_lock assumed */
 static int __write_to_log_initialize()
 {

@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+#allow unused for htc log functions in logd_write.c
+KBUILD_CFLAGS := -Wno-error=unused-but-set-variable
+
 LOCAL_PATH := $(my-dir)
 include $(CLEAR_VARS)
 
@@ -57,7 +61,7 @@ endif
 # ========================================================
 LOCAL_MODULE := liblog
 LOCAL_SRC_FILES := $(liblog_host_sources)
-LOCAL_CFLAGS := -DFAKE_LOG_DEVICE=1 -Werror
+LOCAL_CFLAGS := -DFAKE_LOG_DEVICE=1 -Werror -Wno-error=unused-parameter
 LOCAL_MULTILIB := both
 include $(BUILD_HOST_STATIC_LIBRARY)
 
@@ -76,13 +80,13 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := liblog
 LOCAL_SRC_FILES := $(liblog_target_sources)
-LOCAL_CFLAGS := -Werror
+LOCAL_CFLAGS := -Werror -Wno-error=unused-parameter
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := liblog
 LOCAL_WHOLE_STATIC_LIBRARIES := liblog
-LOCAL_CFLAGS := -Werror
+LOCAL_CFLAGS := -Werror -Wno-error=unused-parameter
 include $(BUILD_SHARED_LIBRARY)
 
 include $(call first-makefiles-under,$(LOCAL_PATH))
